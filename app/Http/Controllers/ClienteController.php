@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,6 +11,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
+
         return response()->json(['clientes' => $clientes], 200);
     }
 
@@ -26,18 +26,20 @@ class ClienteController extends Controller
         ]);
 
         $cliente = Cliente::create($validated);
+
         return response()->json($cliente, Response::HTTP_CREATED);
     }
 
     public function show(string $id)
     {
-        $cliente = Cliente::where("recnum", $id)->first();
+        $cliente = Cliente::where('recnum', $id)->first();
+
         return response()->json(['cliente' => $cliente], 200);
     }
 
     public function update(Request $request, string $id)
     {
-        $cliente = Cliente::where("recnum", $id)->first();
+        $cliente = Cliente::where('recnum', $id)->first();
 
         $validated = $request->validate([
             'empresa' => 'sometimes|required|numeric|exists:empresas,codigo',
@@ -47,13 +49,15 @@ class ClienteController extends Controller
         ]);
 
         $cliente->update($validated);
+
         return response()->json($cliente);
     }
 
     public function destroy(string $id)
     {
-        $cliente = Cliente::where("recnum", $id)->first();
+        $cliente = Cliente::where('recnum', $id)->first();
         $cliente->delete();
+
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

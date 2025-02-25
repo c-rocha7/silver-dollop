@@ -8,10 +8,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Cliente extends Model
 {
-    use HasFactory, HasApiTokens;
+    use HasApiTokens, HasFactory;
 
     protected $primaryKey = 'codigo';
+
     public $incrementing = false;
+
     protected $keyType = 'decimal';
 
     protected $fillable = [

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,9 +11,10 @@ class EmpresaController extends Controller
     public function index()
     {
         $empresas = Empresa::all();
+
         return response()->json(
             [
-                'empresas' => $empresas
+                'empresas' => $empresas,
             ],
             200
         );
@@ -30,15 +30,17 @@ class EmpresaController extends Controller
         ]);
 
         $empresa = Empresa::create($validated);
+
         return response()->json($empresa, Response::HTTP_CREATED);
     }
 
     public function show(string $id)
     {
-        $empresa = Empresa::where("recnum", $id)->first();
+        $empresa = Empresa::where('recnum', $id)->first();
+
         return response()->json(
             [
-                'empresa' => $empresa
+                'empresa' => $empresa,
             ],
             200
         );
@@ -46,7 +48,7 @@ class EmpresaController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $empresa = Empresa::where("recnum", $id)->first();
+        $empresa = Empresa::where('recnum', $id)->first();
 
         $validated = $request->validate([
             'codigo' => 'required|numeric',
@@ -56,13 +58,15 @@ class EmpresaController extends Controller
         ]);
 
         $empresa->update($validated);
+
         return response()->json($empresa);
     }
 
     public function destroy(string $id)
     {
-        $empresa = Empresa::where("recnum", $id)->first();
+        $empresa = Empresa::where('recnum', $id)->first();
         $empresa->delete();
+
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
