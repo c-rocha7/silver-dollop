@@ -12,7 +12,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-        return response()->json($clientes);
+        return response()->json(['clientes' => $clientes], 200);
     }
 
     public function store(Request $request)
@@ -31,13 +31,13 @@ class ClienteController extends Controller
 
     public function show(string $id)
     {
-        $cliente = Cliente::findOrFail($id);
-        return response()->json($cliente);
+        $cliente = Cliente::where("recnum", $id)->first();
+        return response()->json(['cliente' => $cliente], 200);
     }
 
     public function update(Request $request, string $id)
     {
-        $cliente = Cliente::findOrFail($id);
+        $cliente = Cliente::where("recnum", $id)->first();
 
         $validated = $request->validate([
             'empresa' => 'sometimes|required|numeric|exists:empresas,codigo',
@@ -52,7 +52,7 @@ class ClienteController extends Controller
 
     public function destroy(string $id)
     {
-        $cliente = Cliente::findOrFail($id);
+        $cliente = Cliente::where("recnum", $id)->first();
         $cliente->delete();
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
