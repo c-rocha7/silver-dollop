@@ -18,11 +18,11 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'empresa' => 'required|numeric|exists:empresas,codigo',
-            'codigo' => 'required|numeric|unique:clientes',
+            'empresa'      => 'required|numeric|exists:empresas,codigo',
+            'codigo'       => 'required|numeric|unique:clientes',
             'razao_social' => 'required|string|max:255',
-            'tipo' => 'required|in:PJ,PF',
-            'cpf_cnpj' => 'required|string|max:14',
+            'tipo'         => 'required|in:PJ,PF',
+            'cpf_cnpj'     => 'required|string|max:14',
         ]);
 
         $cliente = Cliente::create($validated);
@@ -42,10 +42,10 @@ class ClienteController extends Controller
         $cliente = Cliente::where('recnum', $id)->first();
 
         $validated = $request->validate([
-            'empresa' => 'sometimes|required|numeric|exists:empresas,codigo',
+            'empresa'      => 'sometimes|required|numeric|exists:empresas,codigo',
             'razao_social' => 'sometimes|required|string|max:255',
-            'tipo' => 'sometimes|required|in:PJ,PF',
-            'cpf_cnpj' => 'sometimes|required|string|max:14',
+            'tipo'         => 'sometimes|required|in:PJ,PF',
+            'cpf_cnpj'     => 'sometimes|required|string|max:14',
         ]);
 
         $cliente->update($validated);

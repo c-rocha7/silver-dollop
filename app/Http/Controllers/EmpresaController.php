@@ -23,9 +23,9 @@ class EmpresaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'codigo' => 'required|numeric',
-            'empresa' => 'required|numeric',
-            'sigla' => 'required|string|max:40',
+            'codigo'       => 'required|numeric',
+            'empresa'      => 'required|numeric',
+            'sigla'        => 'required|string|max:40',
             'razao_social' => 'required|string|max:255',
         ]);
 
@@ -51,9 +51,9 @@ class EmpresaController extends Controller
         $empresa = Empresa::where('recnum', $id)->first();
 
         $validated = $request->validate([
-            'codigo' => 'required|numeric',
-            'empresa' => 'sometimes|required|numeric',
-            'sigla' => 'sometimes|required|string|max:40',
+            'codigo'       => 'required|numeric',
+            'empresa'      => 'sometimes|required|numeric',
+            'sigla'        => 'sometimes|required|string|max:40',
             'razao_social' => 'sometimes|required|string|max:255',
         ]);
 

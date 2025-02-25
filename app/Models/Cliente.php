@@ -8,7 +8,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Cliente extends Model
 {
-    use HasApiTokens, HasFactory;
+    use HasApiTokens;
+    use HasFactory;
 
     protected $primaryKey = 'codigo';
 

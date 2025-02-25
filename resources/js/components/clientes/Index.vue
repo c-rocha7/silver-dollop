@@ -58,7 +58,10 @@ const deleteCliente = async (recnum) => {
     <div class="max-w-6xl mx-auto p-6">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">Lista de Clientes</h1>
 
-        <div class="flex justify-end mb-4">
+        <div class="flex justify-between mb-4">
+            <router-link to="/" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition">
+                ⬅️ Voltar para Home
+            </router-link>
             <button @click="novoCliente"
                 class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
                 Criar Novo Cliente

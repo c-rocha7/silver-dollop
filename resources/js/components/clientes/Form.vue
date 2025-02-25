@@ -122,7 +122,11 @@ const saveCliente = async () => {
             </div>
 
             <!-- Botão de Salvar -->
-            <div class="flex justify-end">
+            <div class="flex justify-between">
+                <router-link to="/empresas"
+                    class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition">
+                    ⬅️ Voltar para Listar Clientes
+                </router-link>
                 <button @click="saveCliente"
                     class="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition">
                     {{ editMode ? "Salvar Alterações" : "Criar Cliente" }}

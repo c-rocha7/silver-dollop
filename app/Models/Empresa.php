@@ -8,7 +8,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Empresa extends Model
 {
-    use HasApiTokens, HasFactory;
+    use HasApiTokens;
+    use HasFactory;
 
     protected $primaryKey = 'codigo';
 
