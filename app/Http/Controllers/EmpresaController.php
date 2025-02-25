@@ -35,7 +35,7 @@ class EmpresaController extends Controller
 
     public function show(string $id)
     {
-        $empresa = Empresa::findOrFail($id);
+        $empresa = Empresa::where("recnum", $id)->first();
         return response()->json(
             [
                 'empresa' => $empresa
@@ -46,7 +46,7 @@ class EmpresaController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $empresa = Empresa::findOrFail($id);
+        $empresa = Empresa::where("recnum", $id)->first();
 
         $validated = $request->validate([
             'codigo' => 'required|numeric',
@@ -61,7 +61,7 @@ class EmpresaController extends Controller
 
     public function destroy(string $id)
     {
-        $empresa = Empresa::findOrFail($id);
+        $empresa = Empresa::where("recnum", $id)->first();
         $empresa->delete();
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }
